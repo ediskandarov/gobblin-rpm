@@ -38,7 +38,7 @@ self-serving, and efficient data ingestion framework.
 rm -rf $RPM_BUILD_ROOT
 
 %{__mkdir_p} $RPM_BUILD_ROOT/opt
-%{__mv} gobblin-dist $RPM_BUILD_ROOT/opt/gobblin
+%{__mv} gobblin-dist $RPM_BUILD_ROOT/opt/%{name}
 
 
 %clean
@@ -47,9 +47,14 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(-,root,root,-)
-/opt/gobblin
+/opt/%{name}
+%config(noreplace) /opt/%{name}/conf/*
 
 
 %changelog
+* Wed Oct 21 2015 Eduard Iskandarov <edikexp@gmail.com> b642afff27574c34f8dd75de3729a8d72760197e
+- Update to git commit b642afff27574c34f8dd75de3729a8d72760197e
+- No replace configuration files
+
 * Tue Oct 20 2015 Eduard Iskandarov <edikexp@gmail.com> 0.5.0
 - Initial RPM release
